@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "218789755350",
+    "firebase_url": "https://concertlight-d78ba.firebaseio.com",
+    "project_id": "concertlight-d78ba",
+    "storage_bucket": "concertlight-d78ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218789755350:android:184223f368a68013",
+        "android_client_info": {
+          "package_name": "ggsoyoung.com.concertcolor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218789755350-rngp0tp36vm41uoudbokkeujulm41dj5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFOCY4TIPVfuPwHZzSihS8LglHUFzxX6g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
