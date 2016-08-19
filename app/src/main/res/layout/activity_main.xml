@@ -8,8 +8,32 @@
 	android:orientation="vertical"
 	tools:context="ggsoyoung.com.concertcolor.MainActivity">
 
-	<TextView
+	<Button
+		android:id="@+id/section1_button"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="Hello World!"/>
+		android:text="@string/section1"/>
+	<Button
+		android:id="@+id/section2_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/section2"/>
+	<Button
+		android:id="@+id/section3_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/section3"/>
+	<!--
+    <Button
+		android:id="@+id/section4_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/section4"/>
+    -->
+    <Button
+        android:id="@+id/disable_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/disable"/>
+
 </LinearLayout>

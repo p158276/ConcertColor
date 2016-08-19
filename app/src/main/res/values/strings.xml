@@ -1,3 +1,8 @@
 <resources>
 	<string name="app_name">ConcertColor</string>
+	<string name="section1">section1</string>
+	<string name="section2">section2</string>
+	<string name="section3">section3</string>
+	<string name="section4">section4</string>
+	<string name="disable">Disable</string>
 </resources>

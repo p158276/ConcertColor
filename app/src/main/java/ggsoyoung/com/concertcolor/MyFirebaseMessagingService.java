@@ -6,6 +6,8 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+
 /**
  * Created by YoYo on
  * 16/8/19.
@@ -13,7 +15,9 @@ import com.google.firebase.messaging.RemoteMessage;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 	final String Tag = "Jonathan";
-	public final static String MESSAGE_RECEIVE = "MsgReceive";
+	public final static String COLOR = "color";
+	public final static  String AUDIO = "audio";
+	public final static  String IMAGE = "image";
 	@Override
 	public void onMessageReceived(RemoteMessage remoteMessage) {
 		// ...
@@ -25,12 +29,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 		// Check if message contains a data payload.
 		if (remoteMessage.getData().size() > 0) {
 			Log.d(Constant.TAG, "Message data payload: " + remoteMessage.getData());
+			Map<String, String> data = remoteMessage.getData();
+			String function = data.get("function");
+			String content = data.get("content");
+			if (function.equals("all")) {
+				broadcastUpdate(COLOR, content);
+			}
+			else if (function.equals("audio")){
+				broadcastUpdate(AUDIO, content);
+			}
+			else if (function.equals("image")) {
+				broadcastUpdate(IMAGE, content);
+			}
+			else {
+				broadcastUpdate(COLOR, "#FFFFFF");
+			}
 		}
 
 		// Check if message contains a notification payload.
 		if (remoteMessage.getNotification() != null) {
 			Log.d(Constant.TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-			broadcastUpdate(MESSAGE_RECEIVE,remoteMessage.getNotification().getBody());
 		}
 
 		// Also if you intend on generating your own notifications as a result of a received FCM
@@ -39,7 +57,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 	private void broadcastUpdate(final String action, final String msg) {
 		Log.i(Tag, "broadcastUpdate: " + action + " message : " + msg);
 		final Intent intent = new Intent(action);
-		intent.putExtra(MESSAGE_RECEIVE, msg);
+		intent.putExtra(action, msg);
 		sendBroadcast(intent);
 	}
 }
