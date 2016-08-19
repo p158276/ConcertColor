@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         setButtonEnable(true);
+        LinearLayout bgElement = (LinearLayout) findViewById(R.id.container);
+        bgElement.setBackgroundColor(getResources().getColor(R.color.background_Black));
     }
 
     //	@Override
@@ -71,9 +74,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			final String action = intent.getAction();
 			Log.i(Tag, "broadcastReceiver: " + action);
             if(MyFirebaseMessagingService.COLOR.equals(action)){
-                String hex_color = intent.getStringExtra(MyFirebaseMessagingService.COLOR);
+                String color = intent.getStringExtra(MyFirebaseMessagingService.COLOR);
+                Log.i(Tag, "Change background color to " + color);
                 LinearLayout bgElement = (LinearLayout) findViewById(R.id.container);
-                bgElement.setBackgroundColor(Color.parseColor(hex_color));
+                switch (color) {
+                    case "white" :
+                        bgElement.setBackgroundColor(ContextCompat.getColor(context,R.color.background_White));
+                        break;
+                    case "blue" :
+                        bgElement.setBackgroundColor(ContextCompat.getColor(context, R.color.background_Blue));
+                        break;
+                    case "yellow" :
+                        bgElement.setBackgroundColor(ContextCompat.getColor(context, R.color.background_Yellow));
+                        break;
+                    default:
+                        bgElement.setBackgroundColor(ContextCompat.getColor(context, R.color.background_Black));
+                        break;
+
+                }
+
                 /*AlphaAnimation alphaAnimation1 = new AlphaAnimation(0.1f, 1.0f);
                 alphaAnimation1.setDuration(3000);
                 alphaAnimation1.setRepeatCount(Animation.INFINITE);

@@ -32,7 +32,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 			Map<String, String> data = remoteMessage.getData();
 			String function = data.get("function");
 			String content = data.get("content");
-			if (function.equals("all")) {
+			if (function.equals("color")) {
 				broadcastUpdate(COLOR, content);
 			}
 			else if (function.equals("audio")){
@@ -42,7 +42,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 				broadcastUpdate(IMAGE, content);
 			}
 			else {
-				broadcastUpdate(COLOR, "#FFFFFF");
+				broadcastUpdate(COLOR, "white");
 			}
 		}
 
