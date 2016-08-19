@@ -1,18 +1,17 @@
 package ggsoyoung.com.concertcolor;
 
-import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -28,8 +27,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
 
+		setContentView(R.layout.activity_main);
+        if (Build.VERSION.SDK_INT < 16) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
         section1B = (Button) findViewById(R.id.section1_button);
         section2B = (Button) findViewById(R.id.section2_button);
         section3B = (Button) findViewById(R.id.section3_button);
@@ -48,6 +51,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mIntentFilter.addAction(MyFirebaseMessagingService.IMAGE);
         registerReceiver(mReceiver, mIntentFilter);
 	}
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        if(!TextUtils.isEmpty(topic)){
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(topic);
+        }
+    }
 
     @Override
     protected void onResume() {
